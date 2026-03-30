@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 200 20% 98%;
+    --foreground: 210 30% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 10%;
+
+    --primary: 152 58% 38%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 205 70% 50%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 200 15% 93%;
+    --muted-foreground: 210 10% 45%;
+
+    --accent: 38 92% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 15% 90%;
+    --input: 200 15% 90%;
+    --ring: 152 58% 38%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gradient-hero: linear-gradient(135deg, hsla(205, 70%, 50%, 0.85), hsla(152, 58%, 38%, 0.85));
+    --gradient-card: linear-gradient(135deg, hsla(0, 0%, 100%, 0.7), hsla(0, 0%, 100%, 0.3));
+    --shadow-card: 0 4px 24px -4px hsla(210, 30%, 10%, 0.08);
+    --shadow-card-hover: 0 8px 32px -4px hsla(210, 30%, 10%, 0.12);
+    --glass-bg: hsla(0, 0%, 100%, 0.7);
+    --glass-border: hsla(0, 0%, 100%, 0.4);
+
+    --cool: 205 70% 50%;
+    --normal: 152 58% 38%;
+    --hot: 0 72% 55%;
+    --warm: 38 92% 55%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-card);
+    border-radius: var(--radius);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .glass-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-2px);
+  }
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+  .nav-blur {
+    backdrop-filter: blur(12px);
+    background: hsla(200, 20%, 98%, 0.8);
+    border-bottom: 1px solid var(--glass-border);
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
