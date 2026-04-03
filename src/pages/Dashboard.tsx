@@ -12,6 +12,10 @@ import WeatherForecast from "@/components/dashboard/WeatherForecast";
 import ProvinceSummaryCards from "@/components/dashboard/ProvinceSummaryCards";
 import HistoricalComparison from "@/components/dashboard/HistoricalComparison";
 import AlertsPanel from "@/components/dashboard/AlertsPanel";
+import DataExport from "@/components/dashboard/DataExport";
+import EnvironmentalTips from "@/components/dashboard/EnvironmentalTips";
+import LastUpdated from "@/components/dashboard/LastUpdated";
+import BookmarkDistricts from "@/components/dashboard/BookmarkDistricts";
 import { provinces, getData, getDistrictComparisonData, TimeRange } from "@/data/rwandaData";
 import AnimatedBg from "@/components/dashboard/AnimatedBg";
 
@@ -53,8 +57,18 @@ export default function Dashboard() {
               Real-time environmental data for <span className="font-medium text-foreground">{district}</span>, {province}
             </p>
           </div>
-          <DistrictSearch onDistrictSelect={handleMapDistrictSelect} />
+          <div className="flex items-center gap-3">
+            <LastUpdated />
+            <DataExport data={data} district={district} timeRange={timeRange} />
+            <DistrictSearch onDistrictSelect={handleMapDistrictSelect} />
+          </div>
         </div>
+
+        <BookmarkDistricts
+          currentDistrict={district}
+          currentProvince={province}
+          onDistrictSelect={handleMapDistrictSelect}
+        />
 
         <WeatherAlerts
           district={district}
@@ -118,6 +132,13 @@ export default function Dashboard() {
         <div className="grid lg:grid-cols-1 gap-6">
           <AirQualityChart data={data} />
         </div>
+
+        <EnvironmentalTips
+          avgTemp={parseFloat(avgTemp)}
+          avgHumidity={parseFloat(avgHumidity)}
+          airQuality={avgAirQuality}
+          maxTemp={parseFloat(maxTemp)}
+        />
       </main>
       <Footer />
     </div>
